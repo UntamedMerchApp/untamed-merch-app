@@ -9,19 +9,20 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(self.clients.claim());
 });
 
-// Redirect ONLY the PWA shell to your Printify store
+// Delay redirect so splash screen can show
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
-  // Match the shell path exactly
-  if (
-    url.pathname === "/" ||
-    url.pathname === "/index.html"
-  ) {
-    event.respondWith(Response.redirect(REDIRECT_URL));
+  if (url.pathname === "/" || url.pathname === "/index.html") {
+    event.respondWith(
+      (async () => {
+        // Wait 2000ms before redirect
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        return Response.redirect(REDIRECT_URL);
+      })()
+    );
     return;
   }
 
-  // Default fetch for everything else
   event.respondWith(fetch(event.request));
 });
