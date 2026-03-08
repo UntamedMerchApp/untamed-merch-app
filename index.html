@@ -14,6 +14,10 @@
   <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
 
+  <!-- iOS Fullscreen Fix -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
   <style>
     body {
       background: #000;
@@ -25,16 +29,18 @@
       height: 100vh;
       margin: 0;
       font-size: 24px;
+      text-align: center;
     }
   </style>
 
   <script>
-    // Redirect to your Printify store after 5 seconds
+    // Delay redirect for 5 seconds so Safari can load icons + manifest
     setTimeout(function() {
       window.location.href = "https://untamed-fitness-training.printify.me/";
     }, 2000);
   </script>
 </head>
+
 <body>
   Loading Untamed Merch...
 </body>
