@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Untamed Merch</title>
 
-  <!-- Theme color (required for iOS splash) -->
+  <!-- Theme color -->
   <meta name="theme-color" content="#000000" />
 
   <!-- Manifest -->
@@ -16,52 +16,26 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Untamed Merch" />
 
-  <!-- iOS Icons -->
-  <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon.png" />
+  <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-
-  <!-- Fallback Icons -->
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-  <!-- UNIVERSAL iPHONE SPLASH SCREENS (MATCHING YOUR FILENAMES) -->
-
-  <!-- iPhone 15 Pro Max -->
-  <link rel="apple-touch-startup-image"
-        href="untamed-merch-splash-1290x2796.png"
+  <!-- Native iOS splash images (kept for fallback, but HTML splash overrides) -->
+  <link rel="apple-touch-startup-image" href="untamed-merch-splash-1290x2796.png"
         media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" />
-
-  <!-- iPhone 15 / 14 Pro -->
-  <link rel="apple-touch-startup-image"
-        href="untamed-merch-splash-1179x2556.png"
+  <link rel="apple-touch-startup-image" href="untamed-merch-splash-1179x2556.png"
         media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" />
-
-  <!-- iPhone 14 / 13 / 12 -->
-  <link rel="apple-touch-startup-image"
-        href="untamed-merch-splash-1170x2532.png"
+  <link rel="apple-touch-startup-image" href="untamed-merch-splash-1170x2532.png"
         media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
-
-  <!-- iPhone XR / 11 -->
-  <link rel="apple-touch-startup-image"
-        href="untamed-merch-splash-828x1792.png"
+  <link rel="apple-touch-startup-image" href="untamed-merch-splash-828x1792.png"
         media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" />
-
-  <!-- iPhone SE -->
-  <link rel="apple-touch-startup-image"
-        href="untamed-merch-splash-640x1136.png"
+  <link rel="apple-touch-startup-image" href="untamed-merch-splash-640x1136.png"
         media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
-
-  <!-- iPad Pro 12.9 -->
-  <link rel="apple-touch-startup-image"
-        href="untamed-merch-splash-2048x2732.png"
+  <link rel="apple-touch-startup-image" href="untamed-merch-splash-2048x2732.png"
         media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" />
-
-  <!-- iPad Pro 11 / iPad Air -->
-  <link rel="apple-touch-startup-image"
-        href="untamed-merch-splash-1668x2388.png"
+  <link rel="apple-touch-startup-image" href="untamed-merch-splash-1668x2388.png"
         media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" />
 
   <style>
@@ -73,15 +47,38 @@
       width: 100%;
       overflow: hidden;
     }
+
+    /* HTML Splash Screen */
+    #splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('untamed-merch-splash-1290x2796.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
   </style>
 </head>
 
 <body>
-  <!-- Empty shell — service worker handles redirect -->
+
+  <!-- HTML Splash Screen (guaranteed to show instantly) -->
+  <div id="splash"></div>
+
   <script>
+    // Register service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js');
     }
+
+    // 3-second cinematic delay, then redirect
+    setTimeout(() => {
+      window.location.href = "https://untamed-fitness-training.printify.me/";
+    }, 3000);
   </script>
+
 </body>
 </html>
