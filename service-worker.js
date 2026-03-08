@@ -10,22 +10,25 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(self.clients.claim());
 });
 
-// Redirect logic
+// Redirect logic with 3-second cinematic delay
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
-  // 1. Redirect ANY request to the root shell
-  if (url.origin === self.location.origin && url.pathname === "/") {
-    event.respondWith(Response.redirect(REDIRECT_URL));
+  // Root shell (with or without query params)
+  const isRoot =
+    url.origin === self.location.origin &&
+    (url.pathname === "/" || url.pathname === "/index.html");
+
+  if (isRoot) {
+    event.respondWith(
+      (async () => {
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        return Response.redirect(REDIRECT_URL);
+      })()
+    );
     return;
   }
 
-  // 2. Redirect index.html even with query params
-  if (url.pathname.endsWith("index.html")) {
-    event.respondWith(Response.redirect(REDIRECT_URL));
-    return;
-  }
-
-  // 3. Default fetch for everything else
+  // Default fetch
   event.respondWith(fetch(event.request));
 });
