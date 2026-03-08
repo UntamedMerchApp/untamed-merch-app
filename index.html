@@ -5,38 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Untamed Merch</title>
 
-  <!-- Theme color -->
   <meta name="theme-color" content="#000000" />
-
-  <!-- Manifest -->
   <link rel="manifest" href="manifest.json" />
 
-  <!-- iOS PWA -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Untamed Merch" />
 
-  <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
-  <!-- Native iOS splash images (kept for fallback, but HTML splash overrides) -->
-  <link rel="apple-touch-startup-image" href="untamed-merch-splash-1290x2796.png"
-        media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" />
-  <link rel="apple-touch-startup-image" href="untamed-merch-splash-1179x2556.png"
-        media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" />
-  <link rel="apple-touch-startup-image" href="untamed-merch-splash-1170x2532.png"
-        media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
-  <link rel="apple-touch-startup-image" href="untamed-merch-splash-828x1792.png"
-        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" />
-  <link rel="apple-touch-startup-image" href="untamed-merch-splash-640x1136.png"
-        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
-  <link rel="apple-touch-startup-image" href="untamed-merch-splash-2048x2732.png"
-        media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" />
-  <link rel="apple-touch-startup-image" href="untamed-merch-splash-1668x2388.png"
-        media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" />
 
   <style>
     html, body {
@@ -48,7 +27,6 @@
       overflow: hidden;
     }
 
-    /* HTML Splash Screen */
     #splash {
       position: fixed;
       top: 0; left: 0;
@@ -65,7 +43,6 @@
 
 <body>
 
-  <!-- HTML Splash Screen (guaranteed to show instantly) -->
   <div id="splash"></div>
 
   <script>
@@ -74,9 +51,9 @@
       navigator.serviceWorker.register('service-worker.js');
     }
 
-    // 3-second cinematic delay, then redirect
+    // 5-second cinematic delay + cache-busting redirect
     setTimeout(() => {
-      window.location.href = "https://untamed-fitness-training.printify.me/";
+      window.location.replace("https://untamed-fitness-training.printify.me/?t=" + Date.now());
     }, 7000);
   </script>
 
