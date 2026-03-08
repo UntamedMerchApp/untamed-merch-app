@@ -1,47 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Untamed Merch</title>
 
-  <!-- App Icons -->
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json" />
 
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json">
+  <!-- iOS PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Untamed Merch" />
 
-  <!-- iOS Fullscreen Fix -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Icons -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Splash Screens -->
+  <link rel="apple-touch-startup-image"
+        href="untamed-merch-splash-1290x2796.png"
+        media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" />
+
+  <link rel="apple-touch-startup-image"
+        href="untamed-merch-splash-1179x2556.png"
+        media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3)" />
+
+  <link rel="apple-touch-startup-image"
+        href="untamed-merch-splash-1170x2532.png"
+        media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
+
+  <link rel="apple-touch-startup-image"
+        href="untamed-merch-splash-828x1792.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" />
+
+  <link rel="apple-touch-startup-image"
+        href="untamed-merch-splash-640x1136.png"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
 
   <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    html, body {
       margin: 0;
-      font-size: 24px;
-      text-align: center;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
     }
   </style>
-
-  <script>
-    // Delay redirect for 5 seconds so Safari can load icons + manifest
-    setTimeout(function() {
-      window.location.href = "https://untamed-fitness-training.printify.me/";
-    }, 2000);
-  </script>
 </head>
 
 <body>
-  Loading Untamed Merch...
+  <!-- Empty shell — service worker handles redirect -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
 </body>
 </html>
