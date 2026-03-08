@@ -25,16 +25,25 @@
       height: 100%;
       width: 100%;
       overflow: hidden;
+
+      /* FIX: Prevent content from going under the notch */
+      padding-top: env(safe-area-inset-top);
     }
 
     /* Fullscreen iframe loads immediately */
     #app {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100vw;
-      height: 100vh;
+
+      /* FIX: Adjust height so content sits below the notch */
+      height: calc(100vh - env(safe-area-inset-top));
+
       border: none;
       z-index: 1;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top);
     }
 
     iframe {
@@ -43,10 +52,11 @@
       border: none;
     }
 
-    /* Splash stays on top for 7 seconds */
+    /* Splash overlay */
     #splash {
       position: fixed;
-      top: 0; left: 0;
+      top: 0; 
+      left: 0;
       width: 100vw;
       height: 100vh;
       background: url('untamed-merch-splash-1290x2796.png') center/cover no-repeat;
